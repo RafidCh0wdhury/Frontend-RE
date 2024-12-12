@@ -117,7 +117,18 @@ const MyList = () => {
     }
   };
 
-  const handleDelete = () => {};
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3002/delete-from-list/${id}`);
+      await fetchMyList();
+      toast("Resource deleted from your list successfully!");
+    } catch (err) {
+      console.error(err);
+      toast("Resouce couldn't be deleted. Please try again!");
+    }
+  };
+
+  console.log(renderedFiles);
 
   return (
     <div className="p-5">
@@ -181,16 +192,22 @@ const MyList = () => {
                 <p>Class: {item.resource.resourceClass}</p>
                 <div className="flex space-x-2">
                   <p>Tags:</p>
-                  <ul className="flex items-center space-x-2">
-                    {item.tags.split(",").map((tag, index) => (
-                      <li
-                        key={index}
-                        className="px-2 border border-yellow-700 rounded"
-                      >
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
+                  {item.resource.tags ? (
+                    <ul className="flex items-center space-x-2">
+                      {item.resource.tags.split(",").map((tag, index) => (
+                        <li
+                          key={index}
+                          className="px-2 border border-yellow-700 rounded"
+                        >
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-neutral-400 text-sm mt-1 italic">
+                      No Tags available for this resource
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="flex items-center space-x-5">
