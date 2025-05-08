@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* ... */
+  font-family: 'Dancing Script', 'Helvetica Neue', cursive;
+}
+
+.sidebar-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-menu:hover {
+  color: white;
+  background-color: #3e79e7;
+  background-image: linear-gradient(45deg, #4f7fe7, #88a3ed, #a3c3ef);
+}
+
+.sidebar-menu.active {
+  background-color: #2f61c2;
+  color: white;
+  font-weight: bold;
+}
+
+.dashboard-bg {
+  background-image: url('../images/background.jpg'); /* Replace with your image path */
+  background-size: cover; /* Adjusts the image to cover the entire div */
+  background-position: center; /* Centers the image within the div */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+  
+  
